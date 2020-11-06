@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration and Login App</title>
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+</head>
+<body>
+<!-- create navigation bar ( header) -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/}">Sistema Academico!</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/users}">Cadastrar Usuarios</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/report}">Emitir Relatorios</a></li>
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container">
+    <table>
+        <thead>
+        <tr class="headings">
+            <th class="column-title" style="padding: 5px">Nome</th>
+            <th class="column-title" style="padding: 5px">Email</th>
+            <th class="column-title" style="padding: 5px">Número de Matrícula</th>
+            <th class="column-title" style="padding: 5px">n1</th>
+            <th class="column-title" style="padding: 5px">n2</th>
+            <th class="column-title" style="padding: 5px">faltas</th>
+            <th class="column-title" style="padding: 5px">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="even pointer" th:each="aluno :${alunos}">
+            <td class=" " style="padding: 5px" th:text="${aluno.nomeAluno}">Name</td>
+            <td class=" " style="padding: 5px" th:text="${aluno.email}">Email</td>
+            <td class=" " style="padding: 5px" th:text="${aluno.numeroMatricula}">Matricula</td>
+            <td class=" " style="padding: 5px" th:text="${TurmaAluno.nota1}">N1</td>
+            <td class=" " style="padding: 5px" th:text="${TurmaAluno.nota2}">N2</td>
+            <td class=" " style="padding: 5px" th:text="${TurmaAluno.frequencia}">Faltas</td>
+            <td class=" " style="padding: 5px">
+            <span th:if="${(Alunos.n1 + Alunos.n1) /2 > 6}">Aprovado</span>
+            <span th:if="${(Alunos.n1 + Alunos.n1) /2 < 6}">Reprovado</span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
