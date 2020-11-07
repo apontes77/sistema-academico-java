@@ -24,13 +24,13 @@ public class AlunoService {
     }
 
     public Aluno insert (Aluno a){
-        a.setIdaluno(null);
+        a.setId(null);
         return alunoRepositorio.save(a);
 
     }
 
     public Aluno update (Aluno a) {
-        Aluno newAluno = find(a.getIdaluno());
+        Aluno newAluno = find(a.getId());
         updateData(newAluno, a);
         return alunoRepositorio.save(newAluno);
 
@@ -50,7 +50,7 @@ public class AlunoService {
     }
 
     public void updateData(Aluno newAluno, Aluno a){
-        newAluno.setNomeAluno(a.getNomeAluno());
+        newAluno.setNome(a.getNome());
     }
 
 }
