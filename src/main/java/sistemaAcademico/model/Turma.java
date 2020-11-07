@@ -31,6 +31,10 @@ public class Turma implements Serializable {
     @Column(name = "nome_turma", nullable = false)
     private String nomeDaturma;
 
+    @ManyToOne
+    @JoinColumn(name="professor_id")
+    private Professor professor;
+
 
     public Turma(){}
 

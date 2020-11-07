@@ -16,105 +16,54 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="TB_ALUNO")
-public class Aluno implements Serializable {
+public class Aluno extends Pessoa implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idaluno;
+    private Integer id;
 
-    @Column(name = "nome_aluno", nullable = false)
-    private String nomeAluno;
 
-    @Temporal(TemporalType.DATE)
-    private Date dtnasc;
+    private Date dt_matricula;
 
-    @Temporal(TemporalType.DATE)
-    private Date dtmatricula;
-
-    @Column(name = "email", nullable = false)
-    private String email;
-
-    @Column(name = "numero_matricula", nullable = false)
-    private Integer numeroMatricula;
-
-    
-    
-
-    public Aluno(){}
-
-    public Aluno(Integer idaluno, String nomeAluno, Date dtnasc, Date dtmatricula, String email, Integer numeroMatricula) {
-        this.idaluno = idaluno;
-        this.nomeAluno = nomeAluno;
-        this.dtnasc = dtnasc;
-        this.dtmatricula = dtmatricula;
-        this.email = email;
-        this.numeroMatricula = numeroMatricula;
+    public Aluno() {
     }
 
-
-    public Integer getIdaluno() {
-        return idaluno;
+    public Aluno(String nome, Date dt_nasc, String cpf, String email, Integer tipo_perfil, Integer id, Date dt_matricula) {
+        super(nome, dt_nasc, cpf, email, tipo_perfil);
+        this.id = id;
+        this.dt_matricula = dt_matricula;
     }
 
-    public void setIdaluno(Integer idaluno) {
-        this.idaluno = idaluno;
+    public Integer getId() {
+        return id;
     }
 
-    public Date getDtnasc() {
-        return dtnasc;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setDtnasc(Date dtnasc) {
-        this.dtnasc = dtnasc;
+    public Date getDt_matricula() {
+        return dt_matricula;
     }
 
-    public Date getDtmatricula() {
-        return dtmatricula;
+    public void setDt_matricula(Date dt_matricula) {
+        this.dt_matricula = dt_matricula;
     }
-
-    public void setDtmatricula(Date dtmatricula) {
-        this.dtmatricula = dtmatricula;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Integer getNumeroMatricula() {
-        return numeroMatricula;
-    }
-
-    public void setNumeroMatricula(Integer numeroMatricula) {
-        this.numeroMatricula = numeroMatricula;
-    }
-
-    public String getNomeAluno() {
-        return nomeAluno;
-    }
-
-    public void setNomeAluno(String nomeAluno) {
-        this.nomeAluno = nomeAluno;
-    }
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Aluno aluno = (Aluno) o;
-        return Objects.equals(idaluno, aluno.idaluno);
+        return id.equals(aluno.id);
     }
-
 
     @Override
     public int hashCode() {
-        return Objects.hash(idaluno);
+        return Objects.hash(id);
     }
 }
+
 
