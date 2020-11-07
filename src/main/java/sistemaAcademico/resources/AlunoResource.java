@@ -34,7 +34,7 @@ public class AlunoResource {
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(al.getIdaluno())
+                .buildAndExpand(al.getId())
                 .toUri();
         return ResponseEntity.created(uri).build();
     }
@@ -42,7 +42,7 @@ public class AlunoResource {
 
     @RequestMapping(value="/{id}", method=RequestMethod.PUT)
     public ResponseEntity<Void> update (@RequestBody Aluno a, @PathVariable Integer id) {
-        a.setIdaluno(id);
+        a.setId(id);
         a = alunoService.update(a);
         return ResponseEntity.noContent().build();
     }
