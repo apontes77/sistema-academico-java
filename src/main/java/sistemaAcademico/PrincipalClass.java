@@ -5,13 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class PrincipalClass{
-
-
-
 	public static void main(String[] args) {
 		SpringApplication.run(PrincipalClass.class, args);
 	}
-
-
-
 }
