@@ -11,7 +11,7 @@ import net.javaguides.springboot.model.Aluno;
 @Controller
 public class ListagemGeral {
 	
-	@GetMapping("/Users")
+	@GetMapping("/usuarios")
 	public String relatorioFrequencia (Model model) {
 		model.addAttribute("alunos", getAlunos());
 	
