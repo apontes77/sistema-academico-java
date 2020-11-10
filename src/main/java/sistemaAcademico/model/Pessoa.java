@@ -1,8 +1,13 @@
 package sistemaAcademico.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import java.io.Serializable;
 import java.util.Date;
 
+@Entity(name="PESSOA")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Pessoa implements Serializable {
 
     private static final long serialVersionUID = 1L;

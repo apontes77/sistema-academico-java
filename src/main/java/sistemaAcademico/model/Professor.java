@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+@Entity(name="PROFESSOR")
 public class Professor extends Pessoa implements Serializable {
 
     private static final long serialVersionUID = 1L;
