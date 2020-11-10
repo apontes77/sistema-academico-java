@@ -60,5 +60,32 @@ class RegistrationLoginSpringBootSecurityThymeleafApplicationTests {
 		assertEquals(expResult, true);
 	}
 
+	@Test
+	public void testNullNotes () throws ParseException {
+		CalcularAprovacao ca = new CalcularAprovacao();
+
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-mm-yyyy");
+
+		Curso c = new Curso(null, "ANÁLISE E DESENVOLVIMENTO DE SISTEMAS");
+
+		Disciplina d = new Disciplina(null, "COMPILADORES");
+		Disciplina d1 = new Disciplina(null, "DESENVOLVIMENTO WEB");
+		c.setDisciplinas(Arrays.asList(d, d1));
+
+		Aluno a1 = new Aluno(null, "Joe Biden", sdf.parse("09-07-1945"), sdf.parse("10-02-2019"), "biden@mail.com",
+				31231123);
+
+		Turma turma01 = new Turma(null, d, "C01");
+
+
+		TurmaAluno turmaAluno01 = new TurmaAluno(a1.getIdaluno(), turma01.getId(), -9.0, -8.0, 10);
+
+		boolean expectedNullNotes = true;
+
+		boolean result = ca.verificaSeNotaEhInvalida(turmaAluno01.getNota1(), turmaAluno01.getNota2());
+
+		assertEquals(expectedNullNotes, result);
+	}
+
 
 }

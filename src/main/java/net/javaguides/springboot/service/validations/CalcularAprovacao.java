@@ -18,4 +18,25 @@ public class CalcularAprovacao {
         }
         return resultado;
     }
+
+    public boolean verificaSeNotaEhInvalida (double n1, double n2) {
+        boolean resultado;
+
+        if (n1<0 || n2<0) {
+            resultado = true;
+        }
+        else if (n1<0 || n2 > 0){
+            resultado = true;
+        }
+        else if (n1>0 || n2 < 0) {
+            resultado = true;
+        }
+        else {
+            resultado = false;
+        }
+
+        return resultado;
+    }
+
+
 }
