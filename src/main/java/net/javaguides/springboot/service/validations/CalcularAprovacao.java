@@ -25,10 +25,10 @@ public class CalcularAprovacao {
         if (n1<0 || n2<0) {
             resultado = true;
         }
-        else if (n1<0 || n2 > 0){
+        else if (n1<0 || (n2 > 0 && n2 <=10)){
             resultado = true;
         }
-        else if (n1>0 || n2 < 0) {
+        else if ((n1>0 && n1 <=10) || n2 < 0) {
             resultado = true;
         }
         else {
