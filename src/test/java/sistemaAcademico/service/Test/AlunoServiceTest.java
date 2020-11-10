@@ -1,6 +1,6 @@
 package sistemaAcademico.service.Test;
 
-import sistemaAcademico.model.Aluno;
+import net.javaguides.springboot.model.Aluno;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
