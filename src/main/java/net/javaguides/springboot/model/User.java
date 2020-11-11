@@ -1,7 +1,12 @@
 package net.javaguides.springboot.model;
 
+import net.javaguides.springboot.model.enums.Perfil;
+
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name =  "user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
@@ -20,29 +25,22 @@ public class User {
 	private String email;
 	
 	private String password;
-	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(
-			name = "users_roles",
-			joinColumns = @JoinColumn(
-		            name = "user_id", referencedColumnName = "id"),
-			inverseJoinColumns = @JoinColumn(
-				            name = "role_id", referencedColumnName = "id_role"))
-	
-	private Collection<Role> roles;
-	
+
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name = "PERFIS")
+	private Set<Integer> perfis = new HashSet<>();
+
 	public User() {
 		
 	}
 	
-	public User(String firstName, String lastName, String email, String password, Collection<Role> roles) {
-		super();
+	public User(String firstName, String lastName, String email, String password) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
-		this.roles = roles;
 	}
+
 	public Long getId() {
 		return id;
 	}
@@ -73,11 +71,11 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Collection<Role> getRoles() {
-		return roles;
+	public Set<Perfil> getPerfis() {
+		return perfis.stream().map(x-> Perfil.toEnum(x)).collect(Collectors.toSet());
 	}
-	public void setRoles(Collection<Role> roles) {
-		this.roles = roles;
+	public void addPerfil(Perfil perfil) {
+		perfis.add(perfil.getCod());
 	}
 
 }
