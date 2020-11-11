@@ -43,20 +43,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-
-		if(Arrays.asList(env.getActiveProfiles()).contains("test")) {
-			http.headers().frameOptions().disable();
-		}
-
-		http.cors().and().csrf().disable();
-		http.authorizeRequests()
-				.antMatchers(PUBLIC_MATCHERS)
-				.permitAll()
-				.anyRequest()
-				.authenticated();
-		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
-
+		http.authorizeRequests().antMatchers("/").permitAll().and()
+				.authorizeRequests().antMatchers("/console/**").permitAll();
+		http.csrf().disable();
+		http.headers().frameOptions().disable();
 	}
 
 	@Bean
