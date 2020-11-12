@@ -2,22 +2,15 @@ package net.javaguides.springboot;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
+import net.javaguides.springboot.model.*;
+import net.javaguides.springboot.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import net.javaguides.springboot.model.Aluno;
-import net.javaguides.springboot.model.Curso;
-import net.javaguides.springboot.model.Disciplina;
-import net.javaguides.springboot.model.Turma;
-import net.javaguides.springboot.model.TurmaAluno;
-import net.javaguides.springboot.repository.AlunoRepositorio;
-import net.javaguides.springboot.repository.CursoRepositorio;
-import net.javaguides.springboot.repository.DisciplinaRepositorio;
-import net.javaguides.springboot.repository.TurmaAlunoRepository;
-import net.javaguides.springboot.repository.TurmaRepositorio;
 
 @SpringBootApplication
 public class RegistrationLoginSpringBootSecurityThymeleafApplication implements CommandLineRunner {
@@ -36,6 +29,9 @@ public class RegistrationLoginSpringBootSecurityThymeleafApplication implements 
 
 	@Autowired
 	private TurmaAlunoRepository turmaAlunoRepository;
+
+	@Autowired
+	private ProfessorRepositorio professorRepositorio;
 
 	public static void main(String[] args) {
 		SpringApplication.run(RegistrationLoginSpringBootSecurityThymeleafApplication.class, args);
@@ -67,11 +63,13 @@ public class RegistrationLoginSpringBootSecurityThymeleafApplication implements 
 				1312317);
 
 		Turma turma01 = new Turma(null, d, "C01");
+		Turma turma02 = new Turma(null, d1, "C02");
 
 		cursoRepository.save(c);
 		alunoRepository.saveAll(Arrays.asList(a1, a2, a3, a4, a5, a6, a7));
 		disciplinaRepository.save(d);
 		turmaRepository.save(turma01);
+		turmaRepository.save(turma02);
 		TurmaAluno turmaAluno01 = new TurmaAluno(a1.getIdaluno(), turma01.getId(), 9.5, 10.0, 10);
 		TurmaAluno turmaAluno02 = new TurmaAluno(a2.getIdaluno(), turma01.getId(), 6.5, 8.5, 5);
 		TurmaAluno turmaAluno03 = new TurmaAluno(a3.getIdaluno(), turma01.getId(), 6.5, 8.5, 5);
@@ -79,8 +77,16 @@ public class RegistrationLoginSpringBootSecurityThymeleafApplication implements 
 		TurmaAluno turmaAluno05 = new TurmaAluno(a5.getIdaluno(), turma01.getId(), 6.5, 8.5, 5);
 		TurmaAluno turmaAluno06 = new TurmaAluno(a6.getIdaluno(), turma01.getId(), 6.5, 8.5, 95);
 		TurmaAluno turmaAluno07 = new TurmaAluno(a7.getIdaluno(), turma01.getId(), 6.5, 8.5, 100);
-		
+
 		turmaAlunoRepository.saveAll(Arrays.asList(turmaAluno01, turmaAluno02, turmaAluno03, turmaAluno04, turmaAluno05, turmaAluno06, turmaAluno07));
+
+		Set<Turma> turmas = new HashSet<>();
+		turmas.add(turma01);
+		turmas.add(turma02);
+		Professor p1 = new Professor(null, "Max Gontijo");
+		p1.setTurmas(turmas);
+
+		professorRepositorio.save(p1);
 
 	}
 
