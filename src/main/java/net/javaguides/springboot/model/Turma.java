@@ -3,14 +3,7 @@ package net.javaguides.springboot.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -31,6 +24,9 @@ public class Turma implements Serializable {
     @Column(name = "nome_turma", nullable = false)
     private String nomeDaturma;
 
+    @JsonIgnore
+    @ManyToOne
+    private Professor professor;
 
     public Turma(){}
 
@@ -62,6 +58,13 @@ public class Turma implements Serializable {
 
     public void setNomeDaturma(String nomeDaturma) {
         this.nomeDaturma = nomeDaturma;
+    }
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
 
     @Override

@@ -65,28 +65,35 @@ public class RegistrationLoginSpringBootSecurityThymeleafApplication implements 
 		Turma turma01 = new Turma(null, d, "C01");
 		Turma turma02 = new Turma(null, d1, "C02");
 
-		cursoRepository.save(c);
-		alunoRepository.saveAll(Arrays.asList(a1, a2, a3, a4, a5, a6, a7));
-		disciplinaRepository.save(d);
-		turmaRepository.save(turma01);
-		turmaRepository.save(turma02);
-		TurmaAluno turmaAluno01 = new TurmaAluno(a1.getIdaluno(), turma01.getId(), 9.5, 10.0, 10);
-		TurmaAluno turmaAluno02 = new TurmaAluno(a2.getIdaluno(), turma01.getId(), 6.5, 8.5, 5);
-		TurmaAluno turmaAluno03 = new TurmaAluno(a3.getIdaluno(), turma01.getId(), 6.5, 8.5, 5);
-		TurmaAluno turmaAluno04 = new TurmaAluno(a4.getIdaluno(), turma01.getId(), 6.5, 8.5, 5);
-		TurmaAluno turmaAluno05 = new TurmaAluno(a5.getIdaluno(), turma01.getId(), 6.5, 8.5, 5);
-		TurmaAluno turmaAluno06 = new TurmaAluno(a6.getIdaluno(), turma01.getId(), 6.5, 8.5, 95);
-		TurmaAluno turmaAluno07 = new TurmaAluno(a7.getIdaluno(), turma01.getId(), 6.5, 8.5, 100);
-
-		turmaAlunoRepository.saveAll(Arrays.asList(turmaAluno01, turmaAluno02, turmaAluno03, turmaAluno04, turmaAluno05, turmaAluno06, turmaAluno07));
-
 		Set<Turma> turmas = new HashSet<>();
 		turmas.add(turma01);
 		turmas.add(turma02);
-		Professor p1 = new Professor(null, "Max Gontijo");
-		p1.setTurmas(turmas);
 
+		cursoRepository.save(c);
+		alunoRepository.saveAll(Arrays.asList(a1, a2, a3, a4, a5, a6, a7));
+		disciplinaRepository.save(d);
+
+
+
+		Professor p1 = new Professor(null, "Von Neumann");
+		p1.setTurmas(turmas);
 		professorRepositorio.save(p1);
+		turma01.setProfessor(p1);
+		turma02.setProfessor(p1);
+		turmaRepository.save(turma01);
+		turmaRepository.save(turma02);
+
+		TurmaAluno turmaAluno01 = new TurmaAluno(a1.getIdaluno(), turma01.getId(), 9.5, 10.0, 10);
+		TurmaAluno turmaAluno02 = new TurmaAluno(a2.getIdaluno(), turma01.getId(), 6.5, 8.5, 5);
+		TurmaAluno turmaAluno03 = new TurmaAluno(a3.getIdaluno(), turma01.getId(), 6.5, 8.5, 5);
+		TurmaAluno turmaAluno04 = new TurmaAluno(a4.getIdaluno(), turma02.getId(), 6.5, 8.5, 5);
+		TurmaAluno turmaAluno05 = new TurmaAluno(a5.getIdaluno(), turma02.getId(), 6.5, 8.5, 5);
+		TurmaAluno turmaAluno06 = new TurmaAluno(a6.getIdaluno(), turma02.getId(), 6.5, 8.5, 95);
+		TurmaAluno turmaAluno07 = new TurmaAluno(a7.getIdaluno(), turma02.getId(), 6.5, 8.5, 100);
+
+		turmaAlunoRepository.saveAll(Arrays.asList(turmaAluno01, turmaAluno02, turmaAluno03, turmaAluno04, turmaAluno05, turmaAluno06, turmaAluno07));
+
+
 
 	}
 

@@ -32,7 +32,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			"/alunos/**",
 			"/turmas/**",
 			"/disciplinas/**",
-			"/cursos/**"
+			"/cursos/**",
+			"/professores/**"
 	};
 	
 	@Bean

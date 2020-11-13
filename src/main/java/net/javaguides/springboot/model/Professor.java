@@ -1,6 +1,8 @@
 package net.javaguides.springboot.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,9 +16,8 @@ public class Professor {
 
     @Column(name = "nome_professor")
     private String nomeProfessor;
-
-    @ElementCollection(fetch=FetchType.EAGER)
-    @CollectionTable(name = "TURMAS")
+    @JsonIgnore
+   @OneToMany(mappedBy = "professor", cascade = CascadeType.ALL)
     private Set<Turma> turmas = new HashSet<>();
 
     public Professor() {}
